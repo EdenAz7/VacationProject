@@ -1,0 +1,21 @@
+html,body,#root{
+  margin:0;
+  padding:0;
+  text-align: center;
+  height:100%;
+  background-image: url("../wallpaperVacation.jpg");
+  background-size: cover;
+}
+
+a{
+  color:blue;
+}
+
+.Box{
+  display: inline-block;
+  border: 1px solid black;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px;
+}

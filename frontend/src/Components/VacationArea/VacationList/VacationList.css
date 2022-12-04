@@ -1,0 +1,39 @@
+.VacationsList > a {
+    position: fixed;
+    top: 60px;
+    right: 10px;
+}
+
+.VacationsList {
+    padding: 0;
+    margin: 10px;
+}
+
+.pagination{
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display:flex ;
+    justify-content: center;
+}
+
+.pagination a{
+    font-weight: bold;
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px ;
+    border: 1px solid orange;
+    color: orange;
+    cursor: pointer;
+}
+
+.pagination a:hover{
+    color: whitesmoke;
+    background-color: orange;
+}
+
+
+.paginationActive a{
+    color: whitesmoke;
+    background-color: orange;
+}

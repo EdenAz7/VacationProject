@@ -1,0 +1,35 @@
+npm init -y  => יוצר קובץ של חבילות גייסון
+
+חבילות פיתוח
+npm i jest --save-dev => יצירה של ספריית בדיקות לתוכנה
+npm i nodemon --save-dev => הפעלת שרת בדיקה בדומה ללייב סרבר LiveServer
+npm i ts-node --save-dev => עבודה עם קבצי טייפ סקריפט TS
+
+חבילות הרצה
+npm i express => backend server handler
+npm i cors => to handle cors requests
+npm i joi 
+npm i mysql => for connecting to sql server
+
+"scripts": {
+    "test": "jest --coverage",
+    "server": "nodemon --exec ts-node server.ts"
+},
+
+extend types to be used in our projects
+
+npm i @types/express
+npm i @types/joi
+npm i @types/mysql
+npm i @types/node
+
+
+check server is running by the command line:
+npm run server
+
+
+for fix mysql error of authentication:
+in workbench run this two commands:
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '12345678';
+flush privileges;
