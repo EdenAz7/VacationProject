@@ -1,7 +1,6 @@
 import UserModel from '../model/user';
 import { VacationModel } from '../model/vacation'
 import dal from '../utils/dal_mysql';
-import { v4 as uuid } from "uuid";
 import { OkPacket } from 'mysql';
 import SavedModel from '../model/savedVacation';
 import ClientError from '../model/client-errors';
@@ -30,7 +29,6 @@ async function login(userLogin: UserModel):Promise<string> {
 };
 // register
 async function addUser(user: UserModel){
-
   const dbUsers = getAllUsers();
   const userInDb = (await dbUsers).find(u=> u.user_name === user.user_name);
   if(userInDb) throw new ClientError(401,"This Username Already exists!")
@@ -46,7 +44,7 @@ async function addUser(user: UserModel){
 // vacations
 async function getAllVacations(): Promise<UserModel[]> {
   const sql = `
-  SELECT id, destination, DATE_FORMAT(from_date, "%d-%M-%Y") AS from_date, DATE_FORMAT(to_date, "%d-%M-%Y") AS to_date, description, CONVERT(image USING utf8) as image, followers, price from vacations.vacation
+  SELECT id, destination, from_date, to_date, description, CONVERT(image USING utf8) as image, followers, price from vacations.vacation
   ORDER BY from_date
   `;
   const vacations = await dal.execute(sql);
@@ -55,7 +53,7 @@ async function getAllVacations(): Promise<UserModel[]> {
 
 async function getOneVacation(id: number): Promise<VacationModel>{
   const sql = `
-  SELECT id, destination, DATE_FORMAT(from_date, "%d-%M-%Y") AS from_date, DATE_FORMAT(to_date, "%d-%M-%Y") AS to_date, description, CONVERT(image USING utf8) as image, followers, price from vacations.vacation WHERE id = ${id}`;
+  SELECT id, destination, from_date, to_date, description, CONVERT(image USING utf8) as image, followers, price from vacations.vacation WHERE id = ${id}`;
   const vacations = await dal.execute(sql);
     const vacation = vacations[0];
     socket.emitAddVacation(vacation);
@@ -73,13 +71,6 @@ async function followVacation(data: SavedModel): Promise<SavedModel> {
   const vacation = await dal.execute(sql);
   return vacation;
 }
-
-// async function getFollowedVacations(id:number): Promise<SavedModel> {
-//   const sql = `SELECT vacationId FROM followers 
-// WHERE userId = ${id}`;
-//   const vacations = await dal.execute(sql);
-//   return vacations;
-// }
 
 async function deleteFollowedVacation(userId: number, vacationId: number):Promise<void> {
   const sql = `DELETE FROM followers WHERE userId = ${userId} and vacationId = ${vacationId}`;
@@ -106,9 +97,6 @@ async function deleteVacation(id: number): Promise<void> {
 }
 
 async function updateFullVacation(vacation: VacationModel): Promise<VacationModel> {
-  // Validate put
-  // if user sent an image
-
   const sql = `UPDATE vacations.vacation SET
               destination = '${vacation.destination}',
               description = '${vacation.description}',

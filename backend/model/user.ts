@@ -1,5 +1,3 @@
-import Joi from "joi";
-
 class UserModel {
     public id: number;
     public first_name: string;

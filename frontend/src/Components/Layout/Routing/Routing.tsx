@@ -9,7 +9,6 @@ import LogOut from "../../UserArea/LogOut/LogOut";
 import Register from "../../UserArea/Register/Register";
 import Header from "../Header/Header";
 import Home from "../Home/Home";
-import HomePage from "../HomePage/HomePage";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import "./Routing.css";
 import Role from "../../../model/Role";
@@ -19,17 +18,17 @@ import UserModel from "../../../model/userModel";
 import VacationsList from "../../VacationArea/VacationList/VacationList";
 
 function Routing(): JSX.Element {
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
+    const [isLogged, setIsLogged] = useState<boolean>(true);
     const [isAdmin, setIsAdmin] = useState<boolean>(true);
 
     const unsubscribeMe: Unsubscribe = store.subscribe(() => {
         
         const user = store.getState().user;
         if (!user) {
-            setIsLoggedIn(false);
+            setIsLogged(false);
             setIsAdmin(false);
         } else {
-            setIsLoggedIn(true);
+            setIsLogged(true);
             const role = user?.is_admin;
             if (role === Role.Admin) setIsAdmin(true);
             if (role !== Role.Admin) setIsAdmin(false);
@@ -40,7 +39,7 @@ function Routing(): JSX.Element {
 
         let user = store.getState().user;
         if (!user) {
-            setIsLoggedIn(false);
+            setIsLogged(false);
             setIsAdmin(false);
         } else {
             const role = user?.is_admin;
@@ -56,14 +55,13 @@ function Routing(): JSX.Element {
     return (
         <div className="Routing">
 			<Routes>
-                <Route path="/home" element={isLoggedIn ? <VacationsList/> : <Navigate to="/login" />} />
+                <Route path="/home" element={isLogged ? <VacationsList/> : <Navigate to="/login" />} />
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/logout" element={<LogOut/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/addVacation" element={isAdmin ? <AddVacation/> : <Navigate to="*"/>}/>
                 <Route path="/updateVacation/:id" element={isAdmin ? <UpdateVacation/> : <Navigate to="*"/>}/>
-                <Route path="/" element={<HomePage/>}/>
-                <Route path="/VacationProject" element={<HomePage/>}/>
+                <Route path="/" element={<Login/>}/>
                 <Route path="*" element={<PageNotFound/>}/>
 
             </Routes>

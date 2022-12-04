@@ -61,6 +61,20 @@ function AddVacation(): JSX.Element {
                         Add Vacation
                     </Typography>
                     <br />
+                    <TextField variant="standard"
+                            fullWidth
+                            helperText="Destination"
+                            margin="normal"
+                            type="text"
+                    {...register("destination", {
+                        required: {
+                            value: true,
+                            message: "Destination is required",
+                        },
+                    })}
+                /><br />
+                <span>{errors.description?.message}</span>
+                <br /><br />
                 <TextField fullWidth
                             variant="standard"
                             margin='normal'
@@ -70,20 +84,6 @@ function AddVacation(): JSX.Element {
                         required: {
                             value: true,
                             message: "Name is required",
-                        },
-                    })}
-                /><br />
-                <span>{errors.description?.message}</span>
-                <br /><br />
-                <TextField variant="standard"
-                            fullWidth
-                            helperText="Destination"
-                            margin="normal"
-                            type="text"
-                    {...register("destination", {
-                        required: {
-                            value: true,
-                            message: "Destination is required",
                         },
                     })}
                 /><br />
