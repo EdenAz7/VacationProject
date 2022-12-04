@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import logic from "../logic/logic";
 import verifyToken from '../middleware/verify-token'
 import jwt from "../utils/jwt";
-import  SavedModel from "../model/savedVacation";
+import SavedModel from "../model/savedVacation";
 
 
 const router = express.Router();
@@ -50,11 +50,11 @@ router.get("/api/vacation", async (request: Request, response: Response, next: N
   };
 });
 
-router.post("/api/addVacation", async (request: Request, response: Response, next: NextFunction)=>{
-  try{
+router.post("/api/addVacation", async (request: Request, response: Response, next: NextFunction) => {
+  try {
     const addVacation = await logic.addNewVacation(request.body);
     response.status(202).json(addVacation);
-  } catch(err:any){
+  } catch (err: any) {
     next(err);
   }
 });
@@ -82,21 +82,21 @@ router.post('/api/followVacation', async (request: Request, response: Response, 
 
 router.get('/api/getFollowedVacations', async (request: Request, response: Response, next: NextFunction) => {
   try {
-        const user = jwt.getUserFromToken(request);
-        const followedVacation = await logic.getAllFollowedVacations(user.id);
-        response.status(201).json(followedVacation);
+    const user = jwt.getUserFromToken(request);
+    const followedVacation = await logic.getAllFollowedVacations(user.id);
+    response.json(followedVacation);
   }
   catch (err: any) {
-    next(err)
+    next(err);
   }
 });
 router.put("/api/updateVacation/:id", async (request: Request, response: Response, next: NextFunction) => {
   try {
-      const updateVacation = await logic.updateFullVacation(request.body);
-      response.status(201).json(updateVacation);
+    const updateVacation = await logic.updateFullVacation(request.body);
+    response.status(201).json(updateVacation);
   }
   catch (err: any) {
-      next(err);
+    next(err);
   }
 });
 
@@ -125,21 +125,21 @@ router.delete('/api/delete/:vacationId/:userId', async (request: Request, respon
 });
 
 // Follow vacation router
-router.post("/api/addfollow/:id",verifyToken, async (request: Request, response: Response, next: NextFunction) => {
+router.post("/api/addfollow/:id", verifyToken, async (request: Request, response: Response, next: NextFunction) => {
   try {
     const vacationId = +request.params.id;
     const user = jwt.getUserFromToken(request);
     const follow = new SavedModel(user.id, vacationId);
     const followedVacation = await logic.addFollow(follow);
     response.status(201).json(followedVacation);
-}
-catch (err: any) {
+  }
+  catch (err: any) {
     next(err);
-}
+  }
 });
 
 // Delete follow from vacations
-router.delete("/api/remove/:id",verifyToken, async (request: Request, response: Response, next: NextFunction) => {
+router.delete("/api/remove/:id", verifyToken, async (request: Request, response: Response, next: NextFunction) => {
   try {
     const vacationId = +request.params.id;
     const user = jwt.getUserFromToken(request);
@@ -148,7 +148,7 @@ router.delete("/api/remove/:id",verifyToken, async (request: Request, response: 
     response.status(204).json(follower);
   }
   catch (err: any) {
-      next(err);
+    next(err);
   }
 })
 

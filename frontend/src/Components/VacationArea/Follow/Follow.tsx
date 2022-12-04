@@ -85,7 +85,7 @@ function Follow(props: FollowProps): JSX.Element {
     return (
         <CardActions>
             {isFollow ? <IconButton onClick={removeFollow}><FavoriteIcon /></IconButton> : <IconButton onClick={addFollow}><FavoriteBorderIcon /></IconButton>}
-            {props.followers}
+           {props.followers}
         </CardActions>
 
 
