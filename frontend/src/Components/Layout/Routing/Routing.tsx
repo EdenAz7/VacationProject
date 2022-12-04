@@ -53,6 +53,7 @@ function Routing(): JSX.Element {
 			<Routes>
                 <Route path="/home" element={isLogged ? <VacationsList/> : <Navigate to="/login" />} />
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/VacationProject" element={<Login/>}/>
                 <Route path="/logout" element={<LogOut/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/addVacation" element={isAdmin ? <AddVacation/> : <Navigate to="*"/>}/>
