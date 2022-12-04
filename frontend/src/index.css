@@ -3,7 +3,7 @@ html,body,#root{
   padding:0;
   text-align: center;
   height:100%;
-  background-image: url("../wallpaperVacation.jpg");
+  background-image: url("../src/Components/images/wallpaperVacation.jpg");
   background-size: cover;
 }
 
