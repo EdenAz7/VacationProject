@@ -1,10 +1,7 @@
-import { Person, Password } from "@mui/icons-material";
-import { Typography, TextField, Checkbox, ButtonGroup, Button, createTheme, ThemeProvider, Container, CssBaseline, Box } from "@mui/material";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Typography, TextField, Button, createTheme, ThemeProvider, Container, CssBaseline, Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
-import groupService from "../../../utils/UserService";
 import notify from "../../../utils/Notify";
 import { VacationModel } from "../../../model/vacationModel";
 import vacationsService from "../../../utils/VacationService";

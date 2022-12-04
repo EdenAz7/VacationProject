@@ -11,7 +11,7 @@ interface AuthMenuState{
     user: UserModel;
 }
 
-class AuthMenu extends Component<{}, AuthMenuState>{
+ class AuthMenu extends Component<{}, AuthMenuState>{
 
     private unsubscribeMe: Unsubscribe;
 

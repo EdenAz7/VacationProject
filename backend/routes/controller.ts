@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, response, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import logic from "../logic/logic";
 import verifyToken from '../middleware/verify-token'
 import jwt from "../utils/jwt";

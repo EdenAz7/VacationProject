@@ -1,9 +1,6 @@
 import { Person, Password } from "@mui/icons-material";
 import { Typography, TextField, Checkbox, ButtonGroup, Button } from "@mui/material";
-import axios from "axios";
-import { group } from "console";
-import { config, send } from "process";
-import { SyntheticEvent, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import UserModel from "../../../model/userModel";

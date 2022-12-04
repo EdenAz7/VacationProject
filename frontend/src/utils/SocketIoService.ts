@@ -1,5 +1,5 @@
 import { followStore } from './../Redux/Store';
-import { addFollowAction, deleteFollowAction, FollowAction } from './../Redux/FollowState';
+import { addFollowAction, deleteFollowAction } from './../Redux/FollowState';
 import { Socket, io } from "socket.io-client";
 import { vacationsStore } from "../Redux/Store";
 import { addVacationAction, deleteVacationAction, updateVacationAction } from "../Redux/VacationsState";

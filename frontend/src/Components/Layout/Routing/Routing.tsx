@@ -7,15 +7,12 @@ import AddVacation from "../../VacationArea/AddVacation/AddVacation";
 import Login from "../../UserArea/Login/Login";
 import LogOut from "../../UserArea/LogOut/LogOut";
 import Register from "../../UserArea/Register/Register";
-import Header from "../Header/Header";
-import Home from "../Home/Home";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import "./Routing.css";
 import Role from "../../../model/Role";
 import UpdateVacation from "../../VacationArea/UpdateVacation/UpdateVacation";
-import { VacationModel } from "../../../model/vacationModel";
-import UserModel from "../../../model/userModel";
 import VacationsList from "../../VacationArea/VacationList/VacationList";
+import MyVacations from "../../VacationArea/MyVacations/MyVacations";
 
 function Routing(): JSX.Element {
     const [isLogged, setIsLogged] = useState<boolean>(true);
@@ -60,6 +57,7 @@ function Routing(): JSX.Element {
                 <Route path="/logout" element={<LogOut/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/addVacation" element={isAdmin ? <AddVacation/> : <Navigate to="*"/>}/>
+                <Route path="/myVacations" element={!isAdmin ? <MyVacations/> : <Navigate to="*"/>}/>
                 <Route path="/updateVacation/:id" element={isAdmin ? <UpdateVacation/> : <Navigate to="*"/>}/>
                 <Route path="/" element={<Login/>}/>
                 <Route path="*" element={<PageNotFound/>}/>

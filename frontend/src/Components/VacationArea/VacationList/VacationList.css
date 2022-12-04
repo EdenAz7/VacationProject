@@ -10,8 +10,8 @@
 }
 
 .pagination{
-    width: 80%;
-    height: 40px;
+    width: 100%;
+    height: 20px;
     list-style: none;
     display:flex ;
     justify-content: center;
@@ -20,20 +20,21 @@
 .pagination a{
     font-weight: bold;
     padding: 10px;
-    margin: 8px;
-    border-radius: 5px ;
-    border: 1px solid orange;
-    color: orange;
+    margin: 5px;
+    border-radius: 100px ;
+    border: 1px solid #68b9db;
+    color: #000;
     cursor: pointer;
+    background-color: white;
 }
 
 .pagination a:hover{
     color: whitesmoke;
-    background-color: orange;
+    background-color: #68b9db;
 }
 
 
 .paginationActive a{
-    color: whitesmoke;
-    background-color: orange;
+    color: white;
+    background-color: #68b9db;;
 }

@@ -1,13 +1,8 @@
 import axios from "axios";
-import { resolve } from "path";
 import Role from "../model/Role";
 import UserModel from "../model/userModel";
-import UsersModel from "../model/usersModel";
-//import { UserModel } from "../model/userModel";
-import { VacationModel } from "../model/vacationModel";
 import { loginAction, logoutAction, registerAction } from "../Redux/AuthState";
-import { store, vacationsStore } from "../Redux/Store";
-import { addVacationAction, updateVacationAction } from "../Redux/VacationsState";
+import { store } from "../Redux/Store";
 import appUrl from "./Config";
 
 class GroupService{

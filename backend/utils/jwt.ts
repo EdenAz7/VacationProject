@@ -1,7 +1,6 @@
 import { Request } from "express";
 import jwt, { JwtPayload, VerifyErrors } from "jsonwebtoken";
 import UserModel from "../model/user";
-import config from "./config";
 
 const secretKey = "SecretKey";
 

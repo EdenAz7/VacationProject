@@ -2,7 +2,7 @@ html,body,#root{
   margin:0;
   padding:0;
   text-align: center;
-  height:100%;
+  height:99%;
   background-image: url("../src/Components/images/wallpaperVacation.jpg");
   background-size: cover;
 }

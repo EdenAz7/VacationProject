@@ -8,7 +8,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { VacationModel } from '../../../model/vacationModel';
-import groupService from '../../../utils/UserService';
 import notify from '../../../utils/Notify';
 import vacationsService from '../../../utils/VacationService';
 
