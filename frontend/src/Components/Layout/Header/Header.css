@@ -5,3 +5,9 @@
 img{
 	width: 60px;
 }
+
+.navbar{
+	background-image: url("../../images/wallpaperVacation.jpg");
+	background-size: cover;
+	font-weight: bold;
+}

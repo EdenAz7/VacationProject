@@ -26,16 +26,17 @@ function Header(): JSX.Element {
   }, []);
   return (
     <>
-      <Navbar expand="lg" >
+      <Navbar expand="lg" className="navbar">
         <Container fluid>
           <Navbar.Brand> <img src={logoPng} alt="" /> </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
               className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: '100px' }}
+              style={{ maxHeight: '70px' }}
               navbarScroll>
               <Nav.Link onClick={() => navigate("/home")}>Home</Nav.Link>
-              <Nav.Link onClick={() => navigate("/register")}>Register</Nav.Link>
+              {user?.is_admin !== Role.Admin && user?.is_admin !== Role.User &&<Nav.Link onClick={() => navigate("/register")}>Register</Nav.Link>}
               {user?.is_admin === Role.Admin && <Nav.Link onClick={() => navigate("/addvacation")}>Add vacation</Nav.Link>}
               {user?.is_admin === Role.User && <Nav.Link onClick={() => navigate("/myVacations")}>My Vacations</Nav.Link>}
             </Nav>

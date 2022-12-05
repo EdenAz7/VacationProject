@@ -29,12 +29,10 @@
 }
 
 .pagination a:hover{
-    color: whitesmoke;
     background-color: #68b9db;
 }
 
 
 .paginationActive a{
-    color: white;
     background-color: #68b9db;;
 }

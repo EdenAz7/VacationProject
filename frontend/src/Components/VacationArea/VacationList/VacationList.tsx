@@ -17,7 +17,7 @@ function VacationsList(): JSX.Element {
     const [vacations, setVacations] = useState<VacationModel[]>([]);
     const user = store.getState().user;
 
-    const PER_PAGE = 10;
+    const PER_PAGE = 5;
     const pagesVisited = pageNum * PER_PAGE;
     const pageCount = Math.ceil(vacations.length / PER_PAGE);
     const changePage = ({selected}:any)=>{

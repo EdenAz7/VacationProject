@@ -5,7 +5,9 @@
     overflow: hidden;
 
 }
-
+.Home>.contenet{
+    overflow: auto;
+}
 .Home>.Card {
     margin: 10px;
     display: inline-table;

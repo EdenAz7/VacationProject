@@ -83,6 +83,7 @@ router.post('/api/followVacation', async (request: Request, response: Response, 
 router.get('/api/getFollowedVacations', async (request: Request, response: Response, next: NextFunction) => {
   try {
     const user = jwt.getUserFromToken(request);
+    console.log(user.id)
     const followedVacation = await logic.getAllFollowedVacations(user.id);
     response.json(followedVacation);
   }

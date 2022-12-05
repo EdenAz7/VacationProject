@@ -112,8 +112,8 @@ async function updateFullVacation(vacation: VacationModel): Promise<VacationMode
 
 async function getAllFollowedVacations(userId: number): Promise<SavedModel> {
   const sql = `
-      SELECT vacation.id, destination,from_date,to_date, description, image, destination, followers, price 
-      FROM vacation 
+      SELECT vacation.id, destination,from_date,to_date, description, CONVERT(image USING utf8) as image, destination, followers, price 
+      FROM vacations.vacation
       JOIN followers on vacation.id = followers.vacation_ID 
       WHERE user_ID = ${userId}
   `;

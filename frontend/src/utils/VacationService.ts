@@ -3,6 +3,7 @@ import { VacationModel } from "../model/vacationModel";
 import { vacationsStore } from "../Redux/Store";
 import appUrl from "./Config";
 import { addVacationAction, deleteVacationAction, fetchFollowedVacationsAction, fetchVacationsAction, updateVacationAction } from "../Redux/VacationsState";
+import UserModel from "../model/userModel";
 class VacationService {
 
     public async getAllVacations(): Promise<VacationModel[]> {
@@ -13,6 +14,12 @@ class VacationService {
 
     public async getAllFollowedVacations(): Promise<VacationModel[]> {
         const response = await axios.get<VacationModel[]>(appUrl.getFollowers);
+        const followedVacations = response.data;
+        return followedVacations;
+    }
+
+    public async getAllFollowedVacationsId(): Promise<UserModel[]> {
+        const response = await axios.get<UserModel[]>(appUrl.getFollowers);
         const followedVacations = response.data;
         return followedVacations;
     }
