@@ -17,11 +17,15 @@ function AddVacation(): JSX.Element {
     const params = useParams();
     const id = +(params.id || '');
     //hook form....
+    const refreshPage = ()=>{
+        window.location.reload();
+     }
     async function send(vacation:VacationModel){
         try{
             await vacationsService.addVacation(vacation);
             notify.success(`Vacation ${vacation.destination} was added`);
             navigate("/home");
+            refreshPage();
         } catch (err:any){
             notify.error(err.message);
         }

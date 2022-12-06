@@ -17,7 +17,8 @@ function VacationsList(): JSX.Element {
     const [vacations, setVacations] = useState<VacationModel[]>([]);
     const user = store.getState().user;
 
-    const PER_PAGE = 5;
+    // If there are more than 8 Cards it opens pagination    
+    const PER_PAGE = 8;
     const pagesVisited = pageNum * PER_PAGE;
     const pageCount = Math.ceil(vacations.length / PER_PAGE);
     const changePage = ({selected}:any)=>{
