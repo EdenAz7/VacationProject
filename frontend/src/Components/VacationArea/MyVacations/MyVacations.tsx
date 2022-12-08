@@ -8,7 +8,7 @@ import { fetchFollowedVacationsAction, fetchVacationsAction } from "../../../Red
 import notify from "../../../utils/Notify";
 import vacationsService from "../../../utils/VacationService";
 import Home from "../../Layout/Home/Home";
-import Loading from "../../Loading/Loading";
+import Loading from "../../Layout/Loading/Loading";
 import "./MyVacations.css";
 
 function MyVacations(): JSX.Element {
@@ -26,31 +26,30 @@ function MyVacations(): JSX.Element {
 
     useEffect((async () => {
         try {
-            // get vacations from redux
-            let vacations = vacationsStore.getState().vacations;
-            // if redux vacations is empty, get them from the server
-            if (vacations.length === 0) {
-                vacations = await vacationsService.getAllVacations();
+            // get the vacations from redux
+            let vacation = vacationsStore.getState().vacations;
+            if (vacation.length === 0) {
+                vacation = await vacationsService.getAllVacations();
                 vacationsStore.dispatch(fetchVacationsAction(vacations));
             }
 
-            // get user follows from redux
-            let userFollows = vacationsStore.getState().followedVacations;
+            // get followsUsers from redux
+            let followsUser = vacationsStore.getState().followedVacations;
             // if redux follows is empty, get them from the server
-            if (userFollows.length === 0) {
-                userFollows = await vacationsService.getAllFollowedVacations();
-                vacationsStore.dispatch(fetchFollowedVacationsAction(userFollows));
+            if (followsUser.length === 0) {
+                followsUser = await vacationsService.getAllFollowedVacations();
+                vacationsStore.dispatch(fetchFollowedVacationsAction(followsUser));
             }
 
-            vacations.sort(v => userFollows.find(f => f.id === v.id) ? -1 : 1);
+            vacations.sort(v => followsUser.find(f => f.id === v.id) ? -1 : 1);
             // Change the state
             setVacations(vacations);
 
             // Listen to vacations changes
             const unsubscribe = vacationsStore.subscribe(async () => {
-                vacations = await vacationsService.getAllFollowedVacations();
-                userFollows = vacationsStore.getState().followedVacations;
-                vacations.sort(v => userFollows.find(f => f.id === v.id) ? -1 : 1);
+                vacation = await vacationsService.getAllFollowedVacations();
+                followsUser = vacationsStore.getState().followedVacations;
+                vacations.sort(v => followsUser.find(f => f.id === v.id) ? -1 : 1);
                 setVacations(vacations);
             });
 

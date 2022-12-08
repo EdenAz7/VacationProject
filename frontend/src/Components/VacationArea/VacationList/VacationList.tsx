@@ -7,7 +7,7 @@ import { VacationModel } from "../../../model/vacationModel";
 import vacationsService from "../../../utils/VacationService";
 import notify from "../../../utils/Notify";
 import Home from "../../Layout/Home/Home";
-import Loading from "../../Loading/Loading";
+import Loading from "../../Layout/Loading/Loading";
 import ReactPaginate from "react-paginate";
 
 
