@@ -16,7 +16,9 @@ interface FollowProps {
 }
 
 function Follow(props: FollowProps): JSX.Element {
-
+    const refreshPage = ()=>{
+        window.location.reload();
+     }
     const [isFollow, setIsFollow] = useState<boolean>(false);
     
     useEffect((async () => {
@@ -55,8 +57,7 @@ function Follow(props: FollowProps): JSX.Element {
             vacationsStore.dispatch(updateVacationAction(followedVacation));
             // // update state
             setIsFollow(true);
-            // notify
-            notify.success("Vacation followed");
+            refreshPage();
 
         }
         catch (err: any) {
@@ -74,8 +75,7 @@ function Follow(props: FollowProps): JSX.Element {
             vacationsStore.dispatch(updateVacationAction(unfollowedVacation));
             // update state
             setIsFollow(false);
-            // notify
-            notify.success("Vacation unFollowed");
+            refreshPage();
         }
         catch (err: any) {
             notify.error(err.message);

@@ -1,0 +1,8 @@
+Pictures :
+.\backend\img\
+
+docker:
+I could not upload my database to phpmyadmin because the string(blob=>base64) of the image was too long for the phpmyadmin server.
+
+myVacations:
+the vacations that I'm following will appear the most forward and not in the order of from_date that I set in advance in logic.

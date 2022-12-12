@@ -38,7 +38,6 @@ function Header(): JSX.Element {
               <Nav.Link onClick={() => navigate("/home")}>Home</Nav.Link>
               {user?.is_admin !== Role.Admin && user?.is_admin !== Role.User &&<Nav.Link onClick={() => navigate("/register")}>Register</Nav.Link>}
               {user?.is_admin === Role.Admin && <Nav.Link onClick={() => navigate("/addvacation")}>Add vacation</Nav.Link>}
-              {user?.is_admin === Role.User && <Nav.Link onClick={() => navigate("/myVacations")}>My Vacations</Nav.Link>}
             </Nav>
             <AuthMenu />
           </Navbar.Collapse>

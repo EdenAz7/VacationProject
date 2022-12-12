@@ -7,7 +7,9 @@ import ClientError from '../model/client-errors';
 import jwt from '../utils/jwt';
 import Role from '../model/Role';
 import socket from '../utils/socket';
-// users
+
+// Users:
+// Get all users from database
 async function getAllUsers(): Promise<UserModel[]> {
   const sql = `SELECT * FROM vacations.user;`;
   const result = await dal.execute(sql);
@@ -41,8 +43,12 @@ async function addUser(user: UserModel) {
   const token = jwt.getNewToken(user);
   return token;
 };
-// vacations
+
+
+// Vacations:
+// Get all vacations from database
 async function getAllVacations(): Promise<UserModel[]> {
+  //order by from_date from the closest to the farthest
   const sql = `
   SELECT id, destination, from_date, to_date, description, CONVERT(image USING utf8) as image, followers, price from vacations.vacation
   ORDER BY from_date
@@ -77,6 +83,7 @@ async function deleteFollowedVacation(userId: number, vacationId: number): Promi
   await dal.execute(sql);
 }
 
+// Add vacation to database
 async function addNewVacation(vacation: VacationModel): Promise<VacationModel> {
   const sql = `INSERT INTO vacations.vacation VALUES(DEFAULT,
       '${vacation.description}',
@@ -91,11 +98,13 @@ async function addNewVacation(vacation: VacationModel): Promise<VacationModel> {
   return vacation;
 }
 
+// Delete vacation from database:
 async function deleteVacation(id: number): Promise<void> {
   const sql = `DELETE FROM vacations.vacation WHERE id = ${id}`;
   await dal.execute(sql);
 }
 
+// Update full vacation
 async function updateFullVacation(vacation: VacationModel): Promise<VacationModel> {
   const sql = `UPDATE vacations.vacation SET
               destination = '${vacation.destination}',
@@ -110,6 +119,8 @@ async function updateFullVacation(vacation: VacationModel): Promise<VacationMode
   return vacation;
 }
 
+// Followers:
+// Get all followed vacations:
 async function getAllFollowedVacations(userId: number): Promise<SavedModel> {
   const sql = `
       SELECT vacation.id, destination,from_date,to_date, description, CONVERT(image USING utf8) as image, destination, followers, price 
@@ -120,13 +131,13 @@ async function getAllFollowedVacations(userId: number): Promise<SavedModel> {
   const vacations = await dal.execute(sql);
   return vacations;
 }
-// Add follow vacation
+// Add follow 
 async function addFollow(vacationToFollow: SavedModel): Promise<SavedModel> {
   const sql = `INSERT INTO followers(user_ID, vacation_ID)
                 VALUES(${vacationToFollow.user_ID}, ${vacationToFollow.vacation_ID})`;
   const result: OkPacket = await dal.execute(sql);
 
-  // update +1 to followers in vacations table
+  // update +1 to followers
   const sqlVacationsTable = `UPDATE Vacation 
                             SET followers = followers + 1 
                             WHERE id = ${vacationToFollow.vacation_ID}`;
@@ -142,7 +153,7 @@ async function removeFollow(follow: SavedModel): Promise<void> {
       WHERE vacation_ID=${follow.vacation_ID} 
       AND user_ID=${follow.user_ID}`;
   const results: OkPacket = await dal.execute(sqlFollowerTable);
-  // update -1 to followers in vacations table
+  // update -1 to followers
   const sqlVacationsTable = `UPDATE Vacation 
                                 SET followers = followers - 1 
                                 WHERE id = ${follow.vacation_ID}`;

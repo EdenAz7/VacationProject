@@ -11,7 +11,6 @@ import "./Routing.css";
 import Role from "../../../model/Role";
 import UpdateVacation from "../../VacationArea/UpdateVacation/UpdateVacation";
 import VacationsList from "../../VacationArea/VacationList/VacationList";
-import MyVacations from "../../VacationArea/MyVacations/MyVacations";
 
 function Routing(): JSX.Element {
     const [isLogged, setIsLogged] = useState<boolean>(true);
@@ -57,7 +56,6 @@ function Routing(): JSX.Element {
                 <Route path="/logout" element={<LogOut/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/addVacation" element={isAdmin ? <AddVacation/> : <Navigate to="*"/>}/>
-                <Route path="/myVacations" element={isLogged ? <MyVacations/> : <Navigate to="*"/>}/>
                 <Route path="/updateVacation/:id" element={isAdmin ? <UpdateVacation/> : <Navigate to="*"/>}/>
                 <Route path="/" element={<Login/>}/>
                 <Route path="*" element={<PageNotFound/>}/>
